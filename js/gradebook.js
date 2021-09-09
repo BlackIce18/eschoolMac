@@ -9,15 +9,15 @@ $(document).ready(function () {
     });
 
     $('.table-row').on('mouseenter',(function () {
-        let index = $(this).parent().children($(this)).index($(this)) - 1;
+        var index = $(this).parent().children($(this)).index($(this)) - 1;
         $('.table-row').parent().children('.table-header-row').children('.header-item-col').removeClass('hovered');
         $(this).parent().children('.table-header-row').children('.header-item-col').addClass('hovered');
 
-        let firstCol_row = $('.first-col > .table-row').not(':first-child');
+        var firstCol_row = $('.first-col > .table-row').not(':first-child');
         firstCol_row.removeClass('active');
         $(firstCol_row[index]).addClass('active');
 
-        let lastCol_row = $('.last-col > .table-row').not(':first-child');
+        var lastCol_row = $('.last-col > .table-row').not(':first-child');
 
         $(lastCol_row).children('.lesson').removeClass('hovered');
         $(lastCol_row[index]).children('.lesson').addClass('hovered');
