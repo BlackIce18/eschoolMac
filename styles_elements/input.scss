@@ -317,6 +317,10 @@ svg {
     border-radius: 10px;
     padding: 30px 40px;
 
+    &.pupils-list-item {
+
+    }
+
     &__container {
         &.active {
             .resume__text_block {
