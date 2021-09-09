@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    let colors = {
+    var colors = {
         'darkyellow': '#fddf3b',
         'green': '#37aa50',
         'blue': '#3f59b7',
@@ -10,10 +10,10 @@ $(document).ready(function () {
         'red': '#ce1818',
     }
 
-    let customToolTip = $('.lesson__info-block');
+    var customToolTip = $('.lesson__info-block');
 
     const getOrCreateTooltip = (chart) => {
-        let tooltipEl = customToolTip;
+        var tooltipEl = customToolTip;
         if (!tooltipEl)  { // Создание tooltip если, он не найден
         }
 
@@ -39,16 +39,16 @@ $(document).ready(function () {
         }
 
         else {
-            let dataSets = myChart.data.datasets;
-            for(let i = 0; i < dataSets.length; i++) {
+            var dataSets = myChart.data.datasets;
+            for(var i = 0; i < dataSets.length; i++) {
                 allBluePoints(i);
             }
         }
     }
 
     function allBluePoints(index) {
-        let borderPointsCount = myChart.data.datasets[index].pointBorderColor.length;
-        for(let i = 0; i < borderPointsCount; i++) {
+        var borderPointsCount = myChart.data.datasets[index].pointBorderColor.length;
+        for(var i = 0; i < borderPointsCount; i++) {
             myChart.data.datasets[index].pointBorderColor[i] = colors['blue'];
         }
     }
@@ -76,7 +76,7 @@ $(document).ready(function () {
 
     var ctx = $('#myChart');
 
-    $(ctx).click(function (evt) {
+    $(ctx).on('click',function (evt) {
         $(customToolTip).addClass('hide');
 
         const points = myChart.getElementsAtEventForMode(evt, 'nearest', { intersect: true }, true);
@@ -85,9 +85,9 @@ $(document).ready(function () {
         if (points.length) {
             const firstPoint = points[0];
 
-            let borderPointsCount = myChart.data.datasets[firstPoint.datasetIndex].pointBorderColor.length;
+            var borderPointsCount = myChart.data.datasets[firstPoint.datasetIndex].pointBorderColor.length;
 
-            for(let i = 0; i < borderPointsCount; i++) {
+            for(var i = 0; i < borderPointsCount; i++) {
                 myChart.data.datasets[firstPoint.datasetIndex].pointBorderColor[i] = colors['blue'];
             }
 
@@ -97,7 +97,7 @@ $(document).ready(function () {
 
     var ctx2 = $('#myChart2');
 
-    $(ctx2).click(function (evt) {
+    $(ctx2).on('click',function (evt) {
         $(customToolTip).addClass('hide');
 
         const points = myChart.getElementsAtEventForMode(evt, 'nearest', { intersect: true }, true);
@@ -106,9 +106,9 @@ $(document).ready(function () {
         if (points.length) {
             const firstPoint = points[0];
 
-            let borderPointsCount = myChart.data.datasets[firstPoint.datasetIndex].pointBorderColor.length;
+            var borderPointsCount = myChart.data.datasets[firstPoint.datasetIndex].pointBorderColor.length;
 
-            for(let i = 0; i < borderPointsCount; i++) {
+            for(var i = 0; i < borderPointsCount; i++) {
                 myChart.data.datasets[firstPoint.datasetIndex].pointBorderColor[i] = colors['blue'];
             }
 
@@ -117,8 +117,8 @@ $(document).ready(function () {
     });
 
     const data = [{}];
-    let date = Date.parse('2020-01-01');
-    for (let day = 1; day <= 20; day++) {
+    var date = Date.parse('2020-01-01');
+    for (var day = 1; day <= 20; day++) {
 
         date = new Date(date);
         date.setDate(day);
@@ -131,7 +131,7 @@ $(document).ready(function () {
     const days = [];
 
     days.push('jun');
-    for (let i = 1; i < data.length; i ++) {
+    for (var i = 1; i < data.length; i ++) {
         days.push(data[i].x.getDate());
     }
     days.push('jul');
@@ -375,11 +375,11 @@ $(document).ready(function () {
         }
     });
 
-    $('button.crossButton').click(function (e) {
+    $('button.crossButton').on('click',function (e) {
         if((!$(this).is(e.target)  && $(this).has(e.target).length === 0)) {}
 
-        let tabs__item = $(this).parents('.tabs__item');
-        let index = $(tabs__item).parent().children().index($(tabs__item));
+        var tabs__item = $(this).parents('.tabs__item');
+        var index = $(tabs__item).parent().children().index($(tabs__item));
         RemoveItemFromChart(myChart, index);
         RemoveItemFromChart(myChart2, index);
         tabsColor.splice(index, 1);
@@ -393,17 +393,17 @@ $(document).ready(function () {
 
     function AddNewTab(userImage, name, year) {
 
-        let tabs__item = $('<li class="tabs__item"></li>');
+        var tabs__item = $('<li class="tabs__item"></li>');
 
-        let item_wrapper = $('<div class="item_wrapper"></div>');
+        var item_wrapper = $('<div class="item_wrapper"></div>');
 
-        let user_photo = $('<div class="user_photo"></div>');
-        let image = $('<img class="clip-svg image" src='+userImage+' alt="">');
+        var user_photo = $('<div class="user_photo"></div>');
+        var image = $('<img class="clip-svg image" src='+userImage+' alt="">');
         $(user_photo).append(image);
 
-        let user_name = $('<p class="user_name">'+name+' <span class="year">'+year+'</span></p>');
+        var user_name = $('<p class="user_name">'+name+' <span class="year">'+year+'</span></p>');
 
-        let crossButton = $('<button class="crossButton"><svg class="icon_cross" viewBox="0 0 329.26933 329" xmlns="http://www.w3.org/2000/svg"> <path d="m194.800781 164.769531 128.210938-128.214843c8.34375-8.339844 8.34375-21.824219 0-30.164063-8.339844-8.339844-21.824219-8.339844-30.164063 0l-128.214844 128.214844-128.210937-128.214844c-8.34375-8.339844-21.824219-8.339844-30.164063 0-8.34375 8.339844-8.34375 21.824219 0 30.164063l128.210938 128.214843-128.210938 128.214844c-8.34375 8.339844-8.34375 21.824219 0 30.164063 4.15625 4.160156 9.621094 6.25 15.082032 6.25 5.460937 0 10.921875-2.089844 15.082031-6.25l128.210937-128.214844 128.214844 128.214844c4.160156 4.160156 9.621094 6.25 15.082032 6.25 5.460937 0 10.921874-2.089844 15.082031-6.25 8.34375-8.339844 8.34375-21.824219 0-30.164063zm0 0"></path></svg></button>');
+        var crossButton = $('<button class="crossButton"><svg class="icon_cross" viewBox="0 0 329.26933 329" xmlns="http://www.w3.org/2000/svg"> <path d="m194.800781 164.769531 128.210938-128.214843c8.34375-8.339844 8.34375-21.824219 0-30.164063-8.339844-8.339844-21.824219-8.339844-30.164063 0l-128.214844 128.214844-128.210937-128.214844c-8.34375-8.339844-21.824219-8.339844-30.164063 0-8.34375 8.339844-8.34375 21.824219 0 30.164063l128.210938 128.214843-128.210938 128.214844c-8.34375 8.339844-8.34375 21.824219 0 30.164063 4.15625 4.160156 9.621094 6.25 15.082032 6.25 5.460937 0 10.921875-2.089844 15.082031-6.25l128.210937-128.214844 128.214844 128.214844c4.160156 4.160156 9.621094 6.25 15.082032 6.25 5.460937 0 10.921874-2.089844 15.082031-6.25 8.34375-8.339844 8.34375-21.824219 0-30.164063zm0 0"></path></svg></button>');
 
         $(item_wrapper).append(user_photo);
         $(item_wrapper).append(user_name);
@@ -466,8 +466,8 @@ $(document).ready(function () {
     const tabsColor = [];
 
     (function() { // Добавление цветных рамок для табов
-        let borderColor;
-        for(let i = 0; i < myChart.data.datasets.length; i++) {
+        var borderColor;
+        for(var i = 0; i < myChart.data.datasets.length; i++) {
             borderColor = myChart.data.datasets[i].borderColor[0];
             AddBorderToTab(i, borderColor);
             tabsColor.push(borderColor);
@@ -475,16 +475,16 @@ $(document).ready(function () {
     })();
 
     function AddGrayBorderToTabs() { // добавление серых рамок для табов
-        for(let i = 0; i < myChart.data.datasets.length; i++) {
+        for(var i = 0; i < myChart.data.datasets.length; i++) {
             AddBorderToTab(i, colors['menugray']);
         }
     }
 
     function setColorPointsAndLine(newColorPoint, newColorLine) {
-        for(let i = 0; i < myChart.data.datasets.length; i++) {
-            let borderPointsCount = myChart.data.datasets[i].pointBorderColor.length;
+        for(var i = 0; i < myChart.data.datasets.length; i++) {
+            var borderPointsCount = myChart.data.datasets[i].pointBorderColor.length;
 
-            for(let j = 0; j < borderPointsCount; j++) {
+            for(var j = 0; j < borderPointsCount; j++) {
                 myChart.data.datasets[i].pointBorderColor[j] = newColorPoint;
                 myChart.data.datasets[i].borderColor[j] = newColorLine;
                 myChart.data.datasets[i].backgroundColor[j] = newColorLine;
@@ -495,9 +495,9 @@ $(document).ready(function () {
 
     // Установить цвет точек синий и заменить цвет соединяющей линии по индексу
     function setBluePointsAndNewColorLine_byIndex(index, newColor) {
-        let borderPointsCount = myChart.data.datasets[index].pointBorderColor.length;
+        var borderPointsCount = myChart.data.datasets[index].pointBorderColor.length;
 
-        for(let i = 0; i < borderPointsCount; i++) {
+        for(var i = 0; i < borderPointsCount; i++) {
             myChart.data.datasets[index].pointBorderColor[i] = colors['blue'];
             myChart.data.datasets[index].borderColor[i] = newColor;
             myChart.data.datasets[index].backgroundColor[i] = newColor;
@@ -505,23 +505,23 @@ $(document).ready(function () {
         myChart.update();
     }
 
-    $('.tabs__item').click(function () {
+    $('.tabs__item').on('click',function () {
         AddGrayBorderToTabs();
 
         $('.tabs__item').removeClass('active');
         $(this).addClass('active');
 
-        let tabIndex = $(this).parent().children().index($(this));
+        var tabIndex = $(this).parent().children().index($(this));
         AddBorderToTab(tabIndex, tabsColor[tabIndex]);
         setColorPointsAndLine(colors['menugray'], colors['menugray']);
         setBluePointsAndNewColorLine_byIndex(tabIndex, tabsColor[tabIndex]);
     });
 
     // Вернуть цвета при нажатии за пределами табов
-    $(document).mouseup(function (e){
-        let tabs__item = $(".tabs__item");
+    $(document).on('mouseup', function (e){
+        var tabs__item = $(".tabs__item");
         if (!tabs__item.is(e.target)  && tabs__item.has(e.target).length === 0) {
-            for (let i = 0; i < myChart.data.datasets.length; i++) {
+            for (var i = 0; i < myChart.data.datasets.length; i++) {
                 setBluePointsAndNewColorLine_byIndex(i, tabsColor[i]);
                 AddBorderToTab(i, tabsColor[i]);
             }

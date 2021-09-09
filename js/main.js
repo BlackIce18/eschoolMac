@@ -1,27 +1,27 @@
 $(document).ready(function () {
    
-    $('.menu__more-button').click(function () {
+    $('.menu__more-button').on('click',function () {
         $(this).toggleClass('active');
         $(this.nextElementSibling).toggleClass('active');
 
     });
 
-    $('#menu__button__burger').click(function () {
+    $('#menu__button__burger').on('click',function () {
         $(this).toggleClass('show');
     });
 
-    $('.input__dropdown').click(function () {
-        let parent = $(this).parent();
+    $('.input__dropdown').on('click',function () {
+        var parent = $(this).parent();
         $(parent).children('.dropdown__itemsBlock').toggleClass('hide');
         $(parent).children('.arrow_down_SVG').toggleClass('arrow_down_SVG_inverted');
     });
 
-    $('.dropdown__itemsBlock>li').click(function(){
+    $('.dropdown__itemsBlock>li').on('click',function(){
         $(this).closest('.inputWrapper').children('.input__dropdown').val($(this).children('.dropdown__itemWithImage_text').text());
     });
 
-    $(document).mouseup(function (e){
-        let input__dropdown = $('.input__dropdown').parent();
+    $(document).on('mouseup',function (e){
+        var input__dropdown = $('.input__dropdown').parent();
 
         if (!input__dropdown.is(e.target)  && input__dropdown.has(e.target).length === 0) {
             $(input__dropdown).children('.dropdown__itemsBlock').addClass('hide');
@@ -36,7 +36,7 @@ $(document).ready(function () {
         $('.arrow_down_SVG').removeClass('arrow_down_SVG_inverted');
     });*/
 
-    $('.inputMessageBlock-smiles').click(function () {
+    $('.inputMessageBlock-smiles').on('click',function () {
         $(this).toggleClass('inputMessageBlock-smiles-active');
         $('.menu__smileMenu').toggleClass('hide');
         return false;
@@ -46,20 +46,20 @@ $(document).ready(function () {
         return false;
     });
 
-    $('.favouriteIcon').click(function(){
+    $('.favouriteIcon').on('click',function(){
         $(this).toggleClass('active');
     });
 
     (function() {
-        let sort = $(".sort");
-        let input = $(sort).children('.sort-switch').find('input');
+        var sort = $(".sort");
+        var input = $(sort).children('.sort-switch').find('input');
 
-        $(input).click(function () {
-            let sortItems = $(this).parents('.sort').children('.sort-item');
+        $(input).on('click',function () {
+            var sortItems = $(this).parents('.sort').children('.sort-item');
 
             $(sortItems).removeClass('active');
 
-            let currentInput = $(this);
+            var currentInput = $(this);
 
             if($(currentInput).prop('checked') === true) {
                 $(sortItems).last().addClass('active');

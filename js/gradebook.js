@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $('.header-item-col').click(function () {
+    $('.header-item-col').on('click',function () {
         let header_item_col = $('.header-item-col');
         $(header_item_col).removeClass('clicked');
         $(header_item_col).children('.lesson__info-block').addClass('hide');
@@ -8,7 +8,7 @@ $(document).ready(function () {
         $(this).parent().children('.lesson__info-block').toggleClass('hide');
     });
 
-    $('.table-row').hover(function () {
+    $('.table-row').on('mouseenter',(function () {
         let index = $(this).parent().children($(this)).index($(this)) - 1;
         $('.table-row').parent().children('.table-header-row').children('.header-item-col').removeClass('hovered');
         $(this).parent().children('.table-header-row').children('.header-item-col').addClass('hovered');
@@ -22,11 +22,9 @@ $(document).ready(function () {
         $(lastCol_row).children('.lesson').removeClass('hovered');
         $(lastCol_row[index]).children('.lesson').addClass('hovered');
 
-    }, function () {
+    }));
 
-    });
-
-    $('.lesson').click(function () {
+    $('.lesson').on('click',function () {
         $('.lesson').removeClass('clicked');
         $(this).addClass('clicked');
     });
