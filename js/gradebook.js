@@ -1,6 +1,6 @@
 $(document).ready(function () {
     $('.header-item-col').on('click',function () {
-        let header_item_col = $('.header-item-col');
+        var header_item_col = $('.header-item-col');
         $(header_item_col).removeClass('clicked');
         $(header_item_col).children('.lesson__info-block').addClass('hide');
         $(this).addClass('clicked');
