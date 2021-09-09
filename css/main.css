@@ -1296,7 +1296,7 @@ svg.icon_plus {
 }
 @media (max-width: 991px) {
   .resume.pupils-list-item {
-    min-height: 50px;
+    min-height: 62px;
   }
 }
 .resume__container.active .resume__text_block {
