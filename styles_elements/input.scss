@@ -318,7 +318,11 @@ svg {
     padding: 30px 40px;
 
     &.pupils-list-item {
+        min-height: 70px;
 
+        @media (max-width: $lg) {
+            min-height: 50px;
+        }
     }
 
     &__container {
